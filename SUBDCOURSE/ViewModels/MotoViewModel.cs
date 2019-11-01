@@ -11,5 +11,6 @@ namespace SUBDCOURSE.ViewModels
         public IEnumerable<Moto> allMoto { get; set; }
 
         public string currCategory { get; set; }
+
     }
 }
