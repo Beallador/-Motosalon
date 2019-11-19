@@ -30,7 +30,7 @@ namespace SUBDCOURSE
         {
             string connection = Configuration.GetConnectionString("DefaultConnection");
 
-            services.AddDbContext<AppDbContent>(options =>
+            services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(connection));
             services.AddTransient<IAllMoto, MockMoto>();
             services.AddTransient<IMotosCategory, MockCategory>();

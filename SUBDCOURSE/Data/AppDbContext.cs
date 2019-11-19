@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 
 namespace SUBDCOURSE.Data
 {
-    public class AppDbContent : DbContext
+    public class AppDbContext : DbContext
     {
         public DbSet<Moto> Motos { get; set; }
+        public DbSet<Category> Categories { get; set; }
 
-        public AppDbContent(DbContextOptions<AppDbContent> options)
+        public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)
         {
             Database.EnsureCreated();

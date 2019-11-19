@@ -15,19 +15,14 @@ namespace SUBDCOURSE.Controllers
     {
         private readonly IAllMoto _allMoto;
         private readonly IMotosCategory _motosCategory;
-        private AppDbContent db;
+        private AppDbContext db;
 
-        public MotoController(AppDbContent context)
+        public MotoController(AppDbContext context)
         {
             db = context;
         }
 
-        //public MotoController(IMotosCategory iMotoCategory, IAllMoto iAllMoto)
-        //{
-        //    _allMoto = iAllMoto;
-        //    _motosCategory = iMotoCategory;
-        //}
-
+       
         public ViewResult ViewMoto()
         {
             MotoViewModel obj = new MotoViewModel();
@@ -40,6 +35,8 @@ namespace SUBDCOURSE.Controllers
         {
             return View(await db.Motos.ToListAsync());
         }
+
+        [HttpGet]
         public IActionResult Create()
         {
             return View();
