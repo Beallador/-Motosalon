@@ -8,8 +8,9 @@ namespace SUBDCOURSE.ViewModels
 {
     public class MotoViewModel
     {
-        public IEnumerable<Moto> allMoto { get; set; }
+        public IEnumerable<Moto> AllMoto { get; set; }
 
-        public string currCategory { get; set; }
+        public string CurrCategory { get; set; }
+
     }
 }

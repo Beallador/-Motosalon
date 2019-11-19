@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using SUBDCOURSE.Data;
 using SUBDCOURSE.Data.Interfaces;
+using SUBDCOURSE.Data.Models;
 using SUBDCOURSE.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -12,19 +15,39 @@ namespace SUBDCOURSE.Controllers
     {
         private readonly IAllMoto _allMoto;
         private readonly IMotosCategory _motosCategory;
+        private AppDbContext db;
 
-        public MotoController(IMotosCategory iMotoCategory, IAllMoto iAllMoto)
+        public MotoController(AppDbContext context)
         {
-            _allMoto = iAllMoto;
-            _motosCategory = iMotoCategory;
+            db = context;
         }
 
+       
         public ViewResult ViewMoto()
         {
             MotoViewModel obj = new MotoViewModel();
             obj.allMoto = _allMoto.Motos;
             obj.currCategory = "";
             return View(obj);
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            var list = await db.Motos.ToListAsync();
+            return View(list);
+        }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Create(Moto moto)
+        {
+            db.Motos.Add(moto);
+            await db.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
     }
 }
