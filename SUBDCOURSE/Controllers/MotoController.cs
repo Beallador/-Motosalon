@@ -33,7 +33,8 @@ namespace SUBDCOURSE.Controllers
 
         public async Task<IActionResult> Index()
         {
-            return View(await db.Motos.ToListAsync());
+            var list = await db.Motos.ToListAsync();
+            return View(list);
         }
 
         [HttpGet]
