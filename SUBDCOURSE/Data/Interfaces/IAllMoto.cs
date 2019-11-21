@@ -9,7 +9,7 @@ namespace SUBDCOURSE.Data.Interfaces
     public interface IAllMoto
     {
         IEnumerable<Moto> Motos { get; }
-        IEnumerable<Moto> GetFavoriteMotos { get; set; }
+        IEnumerable<Moto> GetFavoriteMotos { get; }
         Moto GetMoto(int motoId);
     }
 }

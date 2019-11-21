@@ -11,6 +11,7 @@ namespace SUBDCOURSE.Data
     {
         public DbSet<Moto> Motos { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<ShopCartItem> ShopCartItems { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)

@@ -11,7 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SUBDCOURSE.Data;
 using SUBDCOURSE.Data.Interfaces;
-using SUBDCOURSE.Data.Mocks;
+using SUBDCOURSE.Data.Repository;
 
 namespace SUBDCOURSE
 {
@@ -32,8 +32,8 @@ namespace SUBDCOURSE
 
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(connection));
-            services.AddTransient<IAllMoto, MockMoto>();
-            services.AddTransient<IMotosCategory, MockCategory>();
+            services.AddTransient<IAllMoto, MotoRepository>();
+            services.AddTransient<IMotosCategory, CategoryRepository>();
             services.AddMvc(option => option.EnableEndpointRouting = false);
         }
 

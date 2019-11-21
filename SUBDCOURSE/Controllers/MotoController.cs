@@ -23,13 +23,7 @@ namespace SUBDCOURSE.Controllers
         }
 
        
-        public ViewResult ViewMoto()
-        {
-            MotoViewModel obj = new MotoViewModel();
-            obj.allMoto = _allMoto.Motos;
-            obj.currCategory = "";
-            return View(obj);
-        }
+        
 
         public async Task<IActionResult> Index()
         {

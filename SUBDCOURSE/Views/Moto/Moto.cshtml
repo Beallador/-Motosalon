@@ -1,0 +1,10 @@
+﻿<div>
+    @{ 
+
+        foreach (Moto item in Model.AllMoto)
+        {
+            @Html.Partial("AllMoto",item)
+        }
+    }
+
+</div>
