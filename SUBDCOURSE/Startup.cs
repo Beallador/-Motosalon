@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SUBDCOURSE.Data;
 using SUBDCOURSE.Data.Interfaces;
+using SUBDCOURSE.Data.Models;
 using SUBDCOURSE.Data.Repository;
 
 namespace SUBDCOURSE
@@ -34,12 +35,18 @@ namespace SUBDCOURSE
                 options.UseSqlServer(connection));
             services.AddTransient<IAllMoto, MotoRepository>();
             services.AddTransient<IMotosCategory, CategoryRepository>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped(sp => ShopCart.GetCart(sp));
+
             services.AddMvc(option => option.EnableEndpointRouting = false);
+            services.AddMemoryCache();
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseSession();
             app.UseMvcWithDefaultRoute();
             app.UseDeveloperExceptionPage();
             app.UseStaticFiles();

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -32,7 +33,7 @@ namespace SUBDCOURSE.Data.Models
         }
 
 
-        public void AddtoCart(Moto moto, int amount)
+        public void AddtoCart(Moto moto)
         {
             appDbContext.ShopCartItems.Add(new ShopCartItem
             {
@@ -44,6 +45,11 @@ namespace SUBDCOURSE.Data.Models
 
             appDbContext.SaveChanges();
 
+        }
+
+        public List<ShopCartItem> GetShopCartItems()
+        {
+            return appDbContext.ShopCartItems.Where(c => c.ShopCartId == ShopCartId).Include(s => s.moto).ToList();
         }
         
     }
