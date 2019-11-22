@@ -3,9 +3,53 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
+    <title>MotoSalon</title>
+    <link href="/css/master.css" rel="stylesheet">
 </head>
 <body>
+    <header id="header-top" class="top-header">
+        <div class="container">
+            <div class="top-header__main wow slideInDown" data-wow-delay="0.7s" data-wow-duration="1.5s">
+                <div class="row">
+                    <div class="col-xs-4">
+                        <div class="social social--top clearfix">
+                            <a href="#" class="social__one square">
+                                <span class="fa fa-twitter"></span>
+                            </a>
+                            <a href="#" class="social__one square">
+                                <span class="fa fa-facebook"></span>
+                            </a>
+                            <a href="#" class="social__one square">
+                                <span class="fa fa-google-plus"></span>
+                            </a>
+                            <a href="#" class="social__one square">
+                                <span class="fa fa-pinterest"></span>
+                            </a>
+                            <a href="#" class="social__one square">
+                                <span class="fa fa-instagram"></span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-xs-8">
+                        <div class="header-contacts clearfix">
+                            <div class="header-contacts__one">
+                                <a href="contacts.html" class="header-contacts__phone square">
+                                    <span class="fa fa-phone"></span>
+                                </a>
+                                <a href="contacts.html" class="header-contacts__link">0800 123 4567</a>
+                            </div>
+                            <div class="header-contacts__one">
+                                <a href="contacts.html" class="header-contacts__email square">
+                                    <span class="fa fa-envelope"></span>
+                                </a>
+                                <a href="contacts.html" class="header-contacts__link">info@domain.com</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header><!--top-header-->
     <div>
         @RenderBody()
     </div>

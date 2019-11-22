@@ -23,7 +23,7 @@ namespace SUBDCOURSE.Data.Models
 
         public static ShopCart GetCart(IServiceProvider services)
         {
-            ISession session = services.GetRequiredService<HttpContextAccessor>()?.HttpContext.Session;
+            ISession session = services.GetRequiredService<IHttpContextAccessor>()?.HttpContext.Session;
             var context = services.GetService<AppDbContext>();
             string shopCartId = session.GetString("CartId") ?? Guid.NewGuid().ToString();
 
@@ -49,7 +49,7 @@ namespace SUBDCOURSE.Data.Models
 
         public List<ShopCartItem> GetShopCartItems()
         {
-            return appDbContext.ShopCartItems.Where(c => c.ShopCartId == ShopCartId).Include(s => s.moto).ToList();
+            return appDbContext.ShopCartItems.Where(c => c.ShopCartId == ShopCartId).Include(s => s.moto ).ToList();
         }
         
     }

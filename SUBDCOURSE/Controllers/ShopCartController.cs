@@ -14,7 +14,6 @@ namespace SUBDCOURSE.Controllers
     {
         private readonly IAllMoto _motoRepository;
         private readonly ShopCart _shopCart;
-        private readonly ShopCartItem _shopCartItem;
 
         public ShopCartController(IAllMoto motoRepository, ShopCart shopCart)
         {

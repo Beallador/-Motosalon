@@ -29,13 +29,14 @@ namespace SUBDCOURSE
         public IConfiguration Configuration { get; }
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             string connection = Configuration.GetConnectionString("DefaultConnection");
 
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(connection));
             services.AddTransient<IAllMoto, MotoRepository>();
             services.AddTransient<IMotosCategory, CategoryRepository>();
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+           
             services.AddScoped(sp => ShopCart.GetCart(sp));
 
             services.AddMvc(option => option.EnableEndpointRouting = false);
@@ -46,9 +47,12 @@ namespace SUBDCOURSE
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
             app.UseSession();
             app.UseMvcWithDefaultRoute();
-            app.UseDeveloperExceptionPage();
             app.UseStaticFiles();
             app.UseStatusCodePages();
         }
