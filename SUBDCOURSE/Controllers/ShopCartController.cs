@@ -34,12 +34,12 @@ namespace SUBDCOURSE.Controllers
             return View(obj);
         }
 
-        public RedirectToActionResult addToCart(int id)
+        public RedirectToActionResult AddToCart(int id)
         {
             var item = _motoRepository.Motos.FirstOrDefault(i => i.Id == id);
-            if (item == null)
+            if (item != null)
             {
-                _shopCart.AddtoCart(item);
+                _shopCart.AddToCart(item);
             }
 
             return RedirectToAction("Index");

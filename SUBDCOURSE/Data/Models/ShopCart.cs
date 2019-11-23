@@ -33,7 +33,7 @@ namespace SUBDCOURSE.Data.Models
         }
 
 
-        public void AddtoCart(Moto moto)
+        public void AddToCart(Moto moto)
         {
             appDbContext.ShopCartItems.Add(new ShopCartItem
             {

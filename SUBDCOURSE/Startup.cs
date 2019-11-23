@@ -37,6 +37,7 @@ namespace SUBDCOURSE
                 options.UseSqlServer(connection));
             services.AddTransient<IAllMoto, MotoRepository>();
             services.AddTransient<IMotosCategory, CategoryRepository>();
+            services.AddTransient<IAllOrder, OrderRepository>();
            
             services.AddScoped(sp => ShopCart.GetCart(sp));
 

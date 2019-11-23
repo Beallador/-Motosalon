@@ -17,15 +17,15 @@ namespace SUBDCOURSE.Controllers
         private readonly IMotosCategory _motosCategory;
         private AppDbContext db;
 
-        public MotoController(AppDbContext context, IAllMoto allMoto,IMotosCategory motosCategory)
+        public MotoController(AppDbContext context, IAllMoto allMoto, IMotosCategory motosCategory)
         {
             db = context;
             _allMoto = allMoto;
             _motosCategory = motosCategory;
         }
 
-       
-        
+
+
 
         public async Task<IActionResult> Index()
         {
@@ -62,7 +62,7 @@ namespace SUBDCOURSE.Controllers
             }
             else
             {
-                if (string.Equals("Sport",category, StringComparison.OrdinalIgnoreCase ))
+                if (string.Equals("Sport", category, StringComparison.OrdinalIgnoreCase))
                 {
                     motos = _allMoto.Motos.Where(i => i.Category.CategoryName.Equals("Спортивный")).OrderBy(i => i.Id);
                 }
@@ -89,7 +89,7 @@ namespace SUBDCOURSE.Controllers
 
         }
 
-        
+
 
     }
 }

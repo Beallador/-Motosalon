@@ -10,43 +10,7 @@
     <header id="header-top" class="top-header">
         <div class="container">
             <div class="top-header__main wow slideInDown" data-wow-delay="0.7s" data-wow-duration="1.5s">
-                <div class="row">
-                    <div class="col-xs-4">
-                        <div class="social social--top clearfix">
-                            <a href="#" class="social__one square">
-                                <span class="fa fa-twitter"></span>
-                            </a>
-                            <a href="#" class="social__one square">
-                                <span class="fa fa-facebook"></span>
-                            </a>
-                            <a href="#" class="social__one square">
-                                <span class="fa fa-google-plus"></span>
-                            </a>
-                            <a href="#" class="social__one square">
-                                <span class="fa fa-pinterest"></span>
-                            </a>
-                            <a href="#" class="social__one square">
-                                <span class="fa fa-instagram"></span>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-xs-8">
-                        <div class="header-contacts clearfix">
-                            <div class="header-contacts__one">
-                                <a href="contacts.html" class="header-contacts__phone square">
-                                    <span class="fa fa-phone"></span>
-                                </a>
-                                <a href="contacts.html" class="header-contacts__link">0800 123 4567</a>
-                            </div>
-                            <div class="header-contacts__one">
-                                <a href="contacts.html" class="header-contacts__email square">
-                                    <span class="fa fa-envelope"></span>
-                                </a>
-                                <a href="contacts.html" class="header-contacts__link">info@domain.com</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+       
             </div>
         </div>
     </header><!--top-header-->
@@ -57,10 +21,10 @@
                     <div class="col-md-3 col-xs-12">
                         <a href="home-main.html" class="logo">
                             <span class="logo__moto">
-                                <img src="images/svg/logo.svg" alt="logo">
+                                <img src="~/img/logo.svg" alt="logo">
                             </span>
                             <h2 class="logo__title">
-                                BIKER<span>Club</span>
+                                BIKER<span>Shop</span>
                             </h2>
                         </a>
                     </div>
@@ -110,34 +74,12 @@
             </div>
         </div>
     </nav><!--top-nav-->
-    <div>
+
+    <div class="container">
+        <h1>Самые популярные</h1>
         @RenderBody()
     </div>
     <footer class='map-footer'>
-        <div class="footer-contacts">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-5 wow fadeInRight" data-wow-delay="0.7s" data-wow-duration="1.5s">
-                        <form action="/" method="post" class="quick-form">
-                            <h2 class="title"><span class="title__bold">Quick</span>Contact</h2>
-                            <div class="quick-input">
-                                <input type="text" name="text" placeholder="Full Name" />
-                                <div class="triangle-quick-input"></div>
-                            </div>
-                            <div class="quick-input">
-                                <input type="text" name="phone" placeholder="Phone#" />
-                                <div class="triangle-quick-input"></div>
-                            </div>
-                            <div class="quick-input">
-                                <textarea placeholder="Message" name="mess"></textarea>
-                                <div class="triangle-quick-input"></div>
-                            </div>
-                            <button type="submit" class="btn button button--red button--main">SEND MESSAGE</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="footer-bottom">
             <div class="container">
                 <div class="row">
@@ -150,6 +92,6 @@
             </div>
         </div>
         <a id="to-top" href="#header-top"><i class="fa fa-chevron-up"></i></a>
-    </footer><!--map-footer-->
+    </footer>
 </body>
 </html>
