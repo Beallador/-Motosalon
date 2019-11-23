@@ -17,9 +17,11 @@ namespace SUBDCOURSE.Controllers
         private readonly IMotosCategory _motosCategory;
         private AppDbContext db;
 
-        public MotoController(AppDbContext context)
+        public MotoController(AppDbContext context, IAllMoto allMoto,IMotosCategory motosCategory)
         {
             db = context;
+            _allMoto = allMoto;
+            _motosCategory = motosCategory;
         }
 
        
@@ -43,5 +45,51 @@ namespace SUBDCOURSE.Controllers
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
+        [Route("Moto/Moto")]
+        [Route("Moto/Moto/{category}")]
+        public ViewResult Moto(string category)
+        {
+            string _category = category;
+
+            IEnumerable<Moto> motos = null;
+
+            string currCategoru = "";
+
+            if (string.IsNullOrEmpty(category))
+            {
+                motos = _allMoto.Motos.OrderBy(i => i.Id);
+
+            }
+            else
+            {
+                if (string.Equals("Sport",category, StringComparison.OrdinalIgnoreCase ))
+                {
+                    motos = _allMoto.Motos.Where(i => i.Category.CategoryName.Equals("Спортивный")).OrderBy(i => i.Id);
+                }
+                else if (string.Equals("Turist", category, StringComparison.OrdinalIgnoreCase))
+                {
+                    motos = _allMoto.Motos.Where(i => i.Category.CategoryName.Equals("Туристический")).OrderBy(i => i.Id);
+                }
+                else if (string.Equals("Classic", category, StringComparison.OrdinalIgnoreCase))
+                {
+                    motos = _allMoto.Motos.Where(i => i.Category.CategoryName.Equals("Классический")).OrderBy(i => i.Id);
+                }
+
+                currCategoru = _category;
+            }
+
+            var motoObj = new MotoViewModel
+            {
+                AllMoto = motos,
+                CurrCategory = currCategoru
+            };
+
+            return View(motoObj);
+
+
+        }
+
+        
+
     }
 }
