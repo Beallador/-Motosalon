@@ -37,15 +37,17 @@ namespace SUBDCOURSE.Data.Models
         {
             appDbContext.ShopCartItems.Add(new ShopCartItem
             {
-                ShopCartId=ShopCartId,
-                moto=moto,
-                price=moto.Price
+                ShopCartId = ShopCartId,
+                moto = moto,
+                price = moto.Price,
 
             });
 
             appDbContext.SaveChanges();
 
         }
+
+        
 
         public List<ShopCartItem> GetShopCartItems()
         {

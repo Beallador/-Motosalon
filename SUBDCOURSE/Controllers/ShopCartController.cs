@@ -1,12 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SUBDCOURSE.Data;
 using SUBDCOURSE.Data.Interfaces;
 using SUBDCOURSE.Data.Models;
-using SUBDCOURSE.Data.Repository;
 using SUBDCOURSE.ViewModels;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace SUBDCOURSE.Controllers
 {
@@ -14,11 +11,12 @@ namespace SUBDCOURSE.Controllers
     {
         private readonly IAllMoto _motoRepository;
         private readonly ShopCart _shopCart;
-
-        public ShopCartController(IAllMoto motoRepository, ShopCart shopCart)
+        private readonly AppDbContext appDbContext;
+        public ShopCartController(IAllMoto motoRepository, ShopCart shopCart, AppDbContext appDbContext)
         {
             _motoRepository = motoRepository;
             _shopCart = shopCart;
+            this.appDbContext = appDbContext;
         }
 
         public ViewResult Index()
@@ -40,6 +38,18 @@ namespace SUBDCOURSE.Controllers
             if (item != null)
             {
                 _shopCart.AddToCart(item);
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        public RedirectToActionResult RemoveFromCart(int id)
+        {
+            var item = appDbContext.ShopCartItems.Find(id);
+            if (item != null)
+            {
+                appDbContext.Remove(item);
+                appDbContext.SaveChanges();
             }
 
             return RedirectToAction("Index");

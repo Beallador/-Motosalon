@@ -26,5 +26,10 @@ namespace SUBDCOURSE.Controllers
             };
             return View(homeMoto);
         }
+
+        public ViewResult About()
+        { return View(); }
+
+
     }
 }
