@@ -22,5 +22,30 @@ namespace SUBDCOURSE.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public IActionResult Checkout(Order order)
+        {
+            shopCart.listShopItems = shopCart.GetShopCartItems();
+
+            if (shopCart.listShopItems.Count == 0)
+            {
+                ModelState.AddModelError("", "Корзина пуста");
+            }
+
+            if (ModelState.IsValid)
+            {
+                allOrder.CreateOrder(order);
+                return RedirectToAction("Complete");
+            }
+
+            return View(order);
+        }
+
+        public IActionResult Complete()
+        {
+
+            ViewBag.Message = "Заявка успешно отправлена\nНаши специалисты вам перезвонят";
+            return View();
+        }
     }
 }

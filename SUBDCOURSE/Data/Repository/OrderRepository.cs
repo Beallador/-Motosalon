@@ -20,7 +20,8 @@ namespace SUBDCOURSE.Data.Repository
         public void CreateOrder(Order order)
         {
             order.OrderTime = DateTime.Now;
-            appDbContext.Orders.Add(order);
+            var newOrder = appDbContext.Orders.Add(order);
+            appDbContext.SaveChanges();
 
             var items = shopCart.listShopItems;
 
@@ -30,7 +31,7 @@ namespace SUBDCOURSE.Data.Repository
                 {
                     MotoId = el.moto.Id,
                     Price = (uint)el.moto.Price,
-                    OrderId =  order.Id
+                    OrderId = newOrder.Entity.Id,
 
                 };
                 appDbContext.OrderDetails.Add(orderDetail);
