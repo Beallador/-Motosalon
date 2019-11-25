@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace SUBDCOURSE.Data.Interfaces
 {
-    public interface IAllMoto
+     public interface IAllOrder
     {
-        IEnumerable<Moto> Motos { get; }
-        IEnumerable<Moto> GetFavoriteMotos { get; }
-        Moto GetMoto(int motoId);
+        void CreateOrder(Order order);
     }
 }

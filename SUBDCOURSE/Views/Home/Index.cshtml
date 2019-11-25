@@ -1,0 +1,13 @@
+﻿@model HomeViewModel
+
+
+<div>
+    @{
+
+        foreach (Moto item in Model.favMoto)
+        {
+            @Html.Partial("AllMoto", item)
+        }
+    }
+
+</div>
