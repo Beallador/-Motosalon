@@ -1,0 +1,21 @@
+﻿@model IndexViewModel
+@addTagHelper "*, SUBDCOURSE"
+
+<h1>Мотоциклы</h1>
+
+<table class="table">
+    <tr>
+        <th>
+            <sort-header action="Index" up="@Model.SortViewModel.Up"
+                         current="@Model.SortViewModel.Current" property="@Model.SortViewModel.PriceSort">
+                Цена
+            </sort-header>
+        </th>
+    </tr>
+
+    @foreach (Moto u in Model.Motos)
+    {
+        @Html.Partial("AllMoto", u)
+
+    }
+</table>

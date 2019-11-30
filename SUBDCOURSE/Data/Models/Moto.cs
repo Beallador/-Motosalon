@@ -5,6 +5,11 @@ using System.Threading.Tasks;
 
 namespace SUBDCOURSE.Data.Models
 {
+    public enum SortKey
+    {
+        OrderBy,
+        OrderByDesc
+    }
     public class Moto
     {
         public int Id { get; set; }

@@ -25,26 +25,33 @@ namespace SUBDCOURSE.Controllers
         }
 
 
+        public async Task<IActionResult> Index(SortKey sortKey = SortKey.OrderBy)
+        {
+            IQueryable<Moto> motos = db.Motos.Include(x => x.Category);
+
+            ViewData["PriceSort"] = sortKey == SortKey.OrderBy ? SortKey.OrderBy : SortKey.OrderByDesc;
+            
+
+            switch (sortKey)
+            {
+                case SortKey.OrderByDesc:
+                    motos = motos.OrderByDescending(s => s.Price);
+                    break;
+                default:
+                    motos = motos.OrderBy(s => s.Price);
+                    break;
+            }
+
+            IndexViewModel viewModel = new IndexViewModel
+            {
+                Motos = await motos.AsNoTracking().ToListAsync(),
+                SortViewModel = new SortViewModel(sortKey)
+            };
+            return View(viewModel);
+        }
+    
 
 
-        public async Task<IActionResult> Index()
-        {
-            var list = await db.Motos.ToListAsync();
-            return View(list);
-        }
-
-        [HttpGet]
-        public IActionResult Create()
-        {
-            return View();
-        }
-        [HttpPost]
-        public async Task<IActionResult> Create(Moto moto)
-        {
-            db.Motos.Add(moto);
-            await db.SaveChangesAsync();
-            return RedirectToAction("Index");
-        }
         [Route("Moto/Moto")]
         [Route("Moto/Moto/{category}")]
         public ViewResult Moto(string category)
@@ -57,7 +64,7 @@ namespace SUBDCOURSE.Controllers
 
             if (string.IsNullOrEmpty(category))
             {
-                motos = _allMoto.Motos.OrderBy(i => i.Id);
+                motos = _allMoto.Motos.OrderBy(i => i.Price);
 
             }
             else
@@ -84,6 +91,7 @@ namespace SUBDCOURSE.Controllers
                 CurrCategory = currCategoru
             };
 
+            
             return View(motoObj);
 
 
