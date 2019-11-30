@@ -1,0 +1,20 @@
+﻿@model OrderViewModel
+
+
+    <table class="table">
+        @foreach (var item in Model.Orders)
+        {
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.SurName</td>
+            <td>@item.Adress</td>
+            <td>@item.OrderDetails</td>
+            <td>@item.Email</td>
+            <td>@item.OrderTime</td>
+            <td>
+                <a asp-action="Process" asp-controller="admin" asp-route-id="@item.Id">Обработать</a>
+            </td>
+        </tr>
+        }
+    </table>
+

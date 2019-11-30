@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using SUBDCOURSE.Data.Models;
 using Microsoft.EntityFrameworkCore;
+using SUBDCOURSE.ViewModels;
 
 namespace SUBDCOURSE.Controllers
 {
@@ -89,6 +90,30 @@ namespace SUBDCOURSE.Controllers
                     appDbContext.Motos.Remove(moto);
                     await appDbContext.SaveChangesAsync();
                     return RedirectToAction("Index");
+                }
+            }
+            return NotFound();
+        }
+
+        public IActionResult Order()
+        {
+            OrderViewModel orderViewModel = new OrderViewModel
+            {
+                Orders = appDbContext.Orders.ToList()
+            };
+            return View(orderViewModel);
+        }
+
+        public IActionResult Process(int? id)
+        {
+            if(id!=null)
+            {
+                Order order = appDbContext.Orders.FirstOrDefault(p => p.Id == id);
+                if (order!=null)
+                {
+                    appDbContext.Orders.Remove(order);
+                    appDbContext.SaveChanges();
+                    return RedirectToAction("Order");
                 }
             }
             return NotFound();
