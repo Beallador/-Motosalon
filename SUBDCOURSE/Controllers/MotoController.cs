@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SUBDCOURSE.Data;
 using SUBDCOURSE.Data.Interfaces;
@@ -98,6 +99,29 @@ namespace SUBDCOURSE.Controllers
         }
 
 
+        public ActionResult Filter(int? category, string name)
+        {
+            IQueryable<Moto> motos = db.Motos.Include(p => p.Category);
+            if (category != null && category != 0)
+            {
+                motos = motos.Where(p => p.CategoryId == category);
+            }
+            if (!String.IsNullOrEmpty(name))
+            {
+                motos = motos.Where(p => p.Name.Contains(name));
+            }
 
+            List<Category> categories = db.Categories.ToList();
+            // устанавливаем начальный элемент, который позволит выбрать всех
+            categories.Insert(0, new Category { CategoryName = "Все", Id = 0 });
+
+           MotoViewModel viewModel = new MotoViewModel
+            {
+                AllMoto = motos.ToList(),
+                Categories = new SelectList(categories, "Id", "Name"),
+                Name = name
+            };
+            return View(viewModel);
+        }
     }
 }

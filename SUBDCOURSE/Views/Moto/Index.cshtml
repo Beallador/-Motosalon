@@ -13,9 +13,12 @@
         </th>
     </tr>
 
-    @foreach (Moto u in Model.Motos)
-    {
-        @Html.Partial("AllMoto", u)
 
-    }
 </table>
+
+
+@foreach (Moto u in Model.Motos)
+{
+    @Html.Partial("AllMoto", u)
+
+}

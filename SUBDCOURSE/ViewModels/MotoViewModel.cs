@@ -1,4 +1,5 @@
-﻿using SUBDCOURSE.Data.Models;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using SUBDCOURSE.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,10 @@ namespace SUBDCOURSE.ViewModels
         public IEnumerable<Moto> AllMoto { get; set; }
 
         public string CurrCategory { get; set; }
+
+        public SelectList Categories { get; set; }
+
+        public string Name { get; set; }
 
     }
 }
