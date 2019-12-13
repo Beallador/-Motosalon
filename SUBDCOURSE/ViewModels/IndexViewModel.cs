@@ -8,7 +8,6 @@ namespace SUBDCOURSE.ViewModels
 {
     public class IndexViewModel
     {
-        public IEnumerable<Moto> Motos { get; set; }
-        public SortViewModel SortViewModel { get; set; }
+        
     }
 }

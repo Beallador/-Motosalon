@@ -1,5 +1,5 @@
-﻿
-@model MotoViewModel
+﻿@model MotoViewModel
+@addTagHelper "*, SUBDCOURSE"
 
 <form method="get">
     <div class="form-inline form-group">
@@ -7,8 +7,8 @@
         @Html.TextBox("name", Model.Name, htmlAttributes: new { @class = "form-control" })
 
         @*<label class="control-label">Категория: </label>
-        @Html.DropDownList("category", Model.Categories as SelectList,
-                htmlAttributes: new { @class = "form-control" })*@
+            @Html.DropDownList("category", Model.Categories as SelectList,
+                    htmlAttributes: new { @class = "form-control" })*@
 
         <input type="submit" value="Фильтр" class="btn btn-default" />
     </div>

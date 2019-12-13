@@ -43,7 +43,7 @@ namespace SUBDCOURSE.Controllers
                     break;
             }
 
-            IndexViewModel viewModel = new IndexViewModel
+            MotoViewModel viewModel = new MotoViewModel
             {
                 Motos = await motos.AsNoTracking().ToListAsync(),
                 SortViewModel = new SortViewModel(sortKey)
@@ -117,7 +117,7 @@ namespace SUBDCOURSE.Controllers
 
            MotoViewModel viewModel = new MotoViewModel
             {
-                AllMoto = motos.ToList(),
+               AllMoto = motos.ToList(),
                 Categories = new SelectList(categories, "Id", "Name"),
                 Name = name
             };

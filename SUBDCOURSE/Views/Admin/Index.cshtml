@@ -1,5 +1,11 @@
 ﻿@model IEnumerable<Moto>
+       
 
+    <div>
+        <a href="/Admin/Create">Добавить</a>
+        <a href="/Admin/Order">Заказы</a>
+    </div>
+     
     <table class="table">
         @foreach (var item in Model)
         {

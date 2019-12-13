@@ -17,5 +17,8 @@ namespace SUBDCOURSE.ViewModels
 
         public string Name { get; set; }
 
+        public IEnumerable<Moto> Motos { get; set; }
+        public SortViewModel SortViewModel { get; set; }
+
     }
 }
